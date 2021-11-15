@@ -16,7 +16,7 @@ import MovieDetails from './components/MovieDetails'
 
 class App extends Component {
   state = {
-    movieTitle: 'Batman Begins',
+    movieTitle: 'The Flash',
   }
 
   render() {
