@@ -1,8 +1,8 @@
-import logo from './logo.svg'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import { Component } from 'react'
+import MovieDetails from './components/MovieDetails'
 
 // we're going to create a movie chooser app
 // it's going to hold a movie in a dropdown at the top
@@ -44,6 +44,11 @@ class App extends Component {
                   </Form.Control>
                 </Form.Group>
               </Form>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col xs={12} md={6}>
+              <MovieDetails movieTitle={this.state.movieTitle} />
             </Col>
           </Row>
         </Container>
