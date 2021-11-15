@@ -5,11 +5,21 @@ import { Card } from 'react-bootstrap'
 // so MovieDetails needs to know which one is the selected movie!
 // I'm receiving here a prop called movieTitle with this.props.movieTitle
 
+// CHAIN OF EVENTS
+// (constructor)
+// render()
+// componentDidMount()
+// componentDidUpdate()
+// componentWillUnmount() <-- is useful for a limited amount of scenarios, mostly for dealing
+// with PENDING things
+
 class MovieDetails extends Component {
 
     state = {
         movieDetails: null
     }
+
+    timer = null
 
     getMovieData = async () => {
         try {
@@ -21,7 +31,7 @@ class MovieDetails extends Component {
                 console.log(data.Search[0])
                 this.setState({
                     movieDetails: data.Search[0]
-                    // data.Search[0] is an object!
+                    // data.Search[0] is a single object!
                 })
             } else {
                 // something went wrong... :(
@@ -39,6 +49,21 @@ class MovieDetails extends Component {
         // we want to execute it just the times we actually need it!
         console.log('componentDidMount triggered!')
         this.getMovieData()
+
+        // extra
+        this.timer = setInterval(() => {
+            // timer because an Interval object
+            console.log('tick, tok')
+        }, 1000)
+    }
+
+    componentWillUnmount = () => {
+        // this is useful for closing/removing/destroying any pending counter/interval/connection
+        // you might have still going in your component
+
+        // componentWillUnmount gets fired JUST ONCE, a moment BEFORE the destroying of this component
+        clearInterval(this.timer)
+        // or maybe closing an open connection in a chat window
     }
 
     // componentDidUpdate is a lifecycle method automatically triggered by React
